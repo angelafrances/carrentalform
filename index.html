@@ -33,7 +33,7 @@
         <form name="theform" id="theform"></form>   
         <input type="text" placeholder="Enter Renter's Name" id="rentername"><br><br>
         
-        <select name="rentalCars" id="rentalCars" onchange="checkRental()">
+        <select name="rentalCars" id="rentalCars" onchange="checkRental(); zeroLeft();">
             <option value="selection" selected>Please Select</option>
             <option value="volvo">Volvo</option>
             <option value="saab">Saab</option>

@@ -7,10 +7,10 @@ var cars = {
 };
 
 var rentals = {
-    volvo: ['15', '$64'],
+    volvo: ['11', '$64'],
     saab: ['13', '$72'],
-    fiat: ['4', '$98'],
-    audi: ['12', '$108'],
+    fiat: ['0', '$98'],
+    audi: ['8', '$108'],
     
 };
 
@@ -33,7 +33,7 @@ var renters = [
                  rental: inputCars
              }
         );
-        alert('you are booked!');
+        alert('success! you are booked!');
      }
 
 
@@ -60,24 +60,23 @@ window.onload = function() {
         document.getElementById('econCarsAvail').innerHTML = cars.econCount;
     }
     
+  
+    
     function checkRental() {
         var rentme = document.getElementById('rentalCars').value; 
-           if(rentme=="volvo"){
+           if(rentme=="volvo") {
             document.getElementById('rentAvail').innerHTML = rentals.volvo[0];
             document.getElementById('pricePer').innerHTML = rentals.volvo[1];
-            }
-            else if(rentme=="audi"){
+            } else if(rentme=="audi") {
             document.getElementById('rentAvail').innerHTML = rentals.audi[0];
             document.getElementById('pricePer').innerHTML = rentals.audi[1];
-            }
-            else if(rentme=="fiat"){
+            } else if(rentme=="fiat") {
             document.getElementById('rentAvail').innerHTML = rentals.fiat[0];
             document.getElementById('pricePer').innerHTML = rentals.fiat[1];
-            }
-            else if(rentme=="saab"){
+            } else if(rentme=="saab"){
             document.getElementById('rentAvail').innerHTML = rentals.saab[0];
             document.getElementById('pricePer').innerHTML = rentals.saab[1];
-            }
+            } 
     
     }
     
@@ -90,9 +89,19 @@ window.onload = function() {
             addRental();
             
         } else {
-            alert('you must enter name and select one option from dropdown menu');
+            alert('you must enter name AND select one option from dropdown menu');
             
         }
         
+    }
+    
+    function zeroLeft () {
+        var rentme = document.getElementById('rentalCars').value; 
+        if ((rentme == 'audi' && rentals.audi[0] == '0') 
+        || (rentme == 'volvo' && rentals.volvo[0] == '0')
+        || (rentme == 'fiat' && rentals.fiat[0] == '0')
+        || (rentme == 'saab' && rentals.saab[0] == '0')) {
+            alert('oops! this model is no longer available, please select another model');
+        }
     }
     
