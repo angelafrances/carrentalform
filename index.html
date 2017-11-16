@@ -1,0 +1,56 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Car Rental</title>
+    </head>
+    
+    
+    <body>
+        <h1>Business Name</h1>
+        <p id="bizName"></p>
+        
+        <h3>Economy Cars</h3>
+            <p id="econCars"></p>
+            
+            
+        <h3>Economy Cars Available</h3>
+            <p id="econCarsAvail"> </p>
+            
+        <h3>Midsize Cars</h3>
+            <p id="midCars"> </p>
+            
+        <h3>Midsize Cars Available</h3>
+            <p id="midCarsAvail"> </p>
+            
+        <button onclick="clicked_on()">Update Availability</button>
+        <button onclick="midRent()">Rent out 1 Midsize Car</button>
+        <button onclick="econRent()">Rent out 1 Economy Car</button>
+        
+        <h1>Rental Form</h1>
+        <form name="theform" id="theform"></form>   
+        <input type="text" placeholder="Enter Renter's Name" id="rentername"><br><br>
+        
+        <select name="rentalCars" id="rentalCars" onchange="checkRental()">
+            <option value="selection" selected>Please Select</option>
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="fiat">Fiat</option>
+            <option value="audi">Audi</option>
+        </select>
+        </form> 
+        
+        <h3>Available</h3>
+        <p id="rentAvail"> </p>
+        
+        <h3>Price per night</h3>
+        <p id="pricePer"> </p>
+
+        <button id="submitbutton" onclick="checkForm()">Submit</button>
+           
+    
+    <script src="script.js"></script>
+    </body>
+    </html>
