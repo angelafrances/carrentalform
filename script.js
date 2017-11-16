@@ -90,6 +90,7 @@ window.onload = function() {
             
         } else {
             alert('you must enter name AND select one option from dropdown menu');
+            document.getElementById("submitbutton").disabled = true;
             
         }
         
@@ -105,3 +106,6 @@ window.onload = function() {
         }
     }
     
+    function submitOn () {
+        document.getElementById('submitbutton').disabled = false;
+    }

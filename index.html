@@ -31,7 +31,7 @@
         
         <h1>Rental Form</h1>
         <form name="theform" id="theform"></form>   
-        <input type="text" placeholder="Enter Renter's Name" id="rentername"><br><br>
+        <input type="text" placeholder="Enter Renter's Name" id="rentername" onKeyPress="submitOn()"><br><br>
         
         <select name="rentalCars" id="rentalCars" onchange="checkRental(); zeroLeft();">
             <option value="selection" selected>Please Select</option>
