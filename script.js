@@ -104,7 +104,7 @@ window.onload = function() {
         || (rentme == 'saab' && rentals.saab[0] == '0')) {
             alert('oops! this model is no longer available, please select another model');
             document.getElementById('submitbutton').disabled = true;
-        }
+        } else {document.getElementById('submitbutton').disabled = false;}
     }
     
     function submitOn () {
