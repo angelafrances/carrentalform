@@ -2,39 +2,71 @@ var cars = {
   name: 'PVD Car Rentals',
   types: ['economy', 'midsize'],
   econCount: 30,
-  midCount: 25,
+  midCount: 25
  
 };
 
+
 var rentals = {
-    volvo: ['11', '$64'],
-    saab: ['13', '$72'],
-    fiat: ['0', '$98'],
-    audi: ['8', '$108'],
+    types: [
+        {
+            model: 'Select One',
+            count: '',
+            cost: ''
+        },
+        {
+            model: 'Volvo',
+            count: 11, 
+            cost: '$64'
+        },
+        {
+            model: 'Saab',
+            count: 13,
+            cost: '$72'
+        },
+        {
+            model: 'Fiat',
+            count: 0,
+            cost: '$98'
+        },
+        {
+            model: 'Audi',
+            count: 8,
+            cost: '$108'
+        }
+    ]
     
 };
 
-var renters = [
-    {
+
+var renters = {
+    each: [
+
+        {
         name:'Joe',
         rental:'fiat'
-    },
-    {
+        },
+        {
         name:'Amy', 
         rental:'audi'
-    },
-];   
-    function addRental() {
-        var inputName = document.getElementById('rentername').value;
-        var inputCars = document.getElementById('rentalCars').value;
-        renters.push(
-             {
-                 name: inputName,
-                 rental: inputCars
-             }
-        );
-        alert('success! you are booked!');
-     }
+        },
+        
+    ],
+    
+        addRental: function() {
+            var inputName = document.getElementById('rentername').value;
+            // var modelname = document.getElementById('dropdown').value;
+            var inputCars = document.getElementById('model' + document.getElementById('dropdown').value).innerHTML;
+            renters.each.push(
+                 {
+                     name: inputName,
+                     rental: inputCars
+                 }
+            );
+            alert('success! you are booked!');
+        }
+    
+}
 
 
 window.onload = function() {
@@ -60,34 +92,14 @@ window.onload = function() {
         document.getElementById('econCarsAvail').innerHTML = cars.econCount;
     }
     
-  
-    
-    function checkRental() {
-        var rentme = document.getElementById('rentalCars').value; 
-           if(rentme=="volvo") {
-            document.getElementById('rentAvail').innerHTML = rentals.volvo[0];
-            document.getElementById('pricePer').innerHTML = rentals.volvo[1];
-            } else if(rentme=="audi") {
-            document.getElementById('rentAvail').innerHTML = rentals.audi[0];
-            document.getElementById('pricePer').innerHTML = rentals.audi[1];
-            } else if(rentme=="fiat") {
-            document.getElementById('rentAvail').innerHTML = rentals.fiat[0];
-            document.getElementById('pricePer').innerHTML = rentals.fiat[1];
-            } else if(rentme=="saab"){
-            document.getElementById('rentAvail').innerHTML = rentals.saab[0];
-            document.getElementById('pricePer').innerHTML = rentals.saab[1];
-            } 
-    
-    }
-    
-    
+ 
     function checkForm() {
         var formFill = document.getElementById('rentername').value;
-        var dropFill = document.getElementById('rentalCars').value;
+        var dropFill = document.getElementById('dropdown').value;
        
-        if ((formFill.length > 0) && (dropFill != 'selection')) {
-            addRental();
-            
+        if ((formFill.length > 0) && (dropFill != '0')) {
+            renters.addRental();
+        //   alert('help');  
         } else {
             alert('you must enter name AND select one option from dropdown menu');
             document.getElementById("submitbutton").disabled = true;
@@ -96,17 +108,38 @@ window.onload = function() {
         
     }
     
-    function zeroLeft () {
-        var rentme = document.getElementById('rentalCars').value; 
-        if ((rentme == 'audi' && rentals.audi[0] == '0') 
-        || (rentme == 'volvo' && rentals.volvo[0] == '0')
-        || (rentme == 'fiat' && rentals.fiat[0] == '0')
-        || (rentme == 'saab' && rentals.saab[0] == '0')) {
-            alert('oops! this model is no longer available, please select another model');
-            document.getElementById('submitbutton').disabled = true;
-        } else {document.getElementById('submitbutton').disabled = false;}
-    }
-    
     function submitOn () {
         document.getElementById('submitbutton').disabled = false;
     }
+
+
+function displayDetails(xyz) {
+    var xyz = document.getElementById('dropdown').value;
+    document.getElementById('available').innerHTML = rentals.types[xyz].count;
+    document.getElementById('price').innerHTML = rentals.types[xyz].cost;
+    
+    
+    if (document.getElementById('available').innerHTML == '0')  {
+        alert("oops! this model is no longer available, please select another model");
+        document.getElementById('submitbutton').disabled = true;
+    } else {document.getElementById('submitbutton').disabled = false;}
+}
+
+
+var dropDM = document.createElement('SELECT');
+dropDM.setAttribute('id', 'dropdown');
+dropDM.setAttribute('onchange', "displayDetails()");
+document.getElementById('dropmenu').appendChild(dropDM);
+// var seek = document.getElementById('dropdown').value;
+
+
+for (var i=0; i<rentals.types.length; i++) {
+    var newSelect = document.createElement('OPTION');
+    newSelect.setAttribute('value', i);
+    newSelect.setAttribute('id', 'model' + i);
+    newSelect.innerHTML = rentals.types[i].model;
+    var labels = document.createElement('LABEL');
+    document.getElementById('dropdown').appendChild(newSelect);
+    document.getElementById('dropdown').appendChild(labels);
+    
+}
